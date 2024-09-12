@@ -53,7 +53,7 @@ namespace mystikal.dinkum.DurabilityManager
                                                     "General",
                                                     "WeaponDurabilityMultiplier",
                                                     1.0f,
-                                                    "The multiplier amount for Tools. Minimum value is 0.01, Max is 1000.0")
+                                                    "The multiplier amount for Weapons. Minimum value is 0.01, Max is 1000.0")
                                                 .Value,
                                                 0.01f,
                                                 1000.0f);
