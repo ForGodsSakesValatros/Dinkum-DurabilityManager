@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.35130.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "mystikal.dinkum.DurabilityManager", "mystikal.dinkum.DurabilityManager.csproj", "{AE390CB1-C67E-4FF4-932D-997E87B6573F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE390CB1-C67E-4FF4-932D-997E87B6573F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE390CB1-C67E-4FF4-932D-997E87B6573F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE390CB1-C67E-4FF4-932D-997E87B6573F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE390CB1-C67E-4FF4-932D-997E87B6573F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0B0CEF6A-91AF-458F-BA60-552C58F1E19A}
+	EndGlobalSection
+EndGlobal
