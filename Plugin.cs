@@ -22,7 +22,7 @@ namespace mystikal.dinkum.DurabilityManager
             Plugin.Log = base.Logger;
 
             // Plugin startup logic
-            Logger.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
+            Plugin.Log.LogInfo($"Plugin {PluginInfo.PLUGIN_GUID} is loaded!");
 
             // Config
             Config.Bind("!Developer",                                       // The section under which the option is shown
@@ -79,7 +79,6 @@ namespace mystikal.dinkum.DurabilityManager
                 if (!current.hasFuel)   // If the current Item doesn't use fuel, let's just keep going
                     continue;
 
-                bool flag = false;
                 // Let's handle some items individually first
                 switch (current.getItemId())
                 {
@@ -87,37 +86,32 @@ namespace mystikal.dinkum.DurabilityManager
                     case 1444:  // Cup of Sunshine
                     case 1530:  // Hand Trolley
                         // This items count as tools, but we don't want to edit them. We'll just skip them
-                        flag = true;
                         break;
                     case 119: // ItemId 119 is First Aid Kit. For this one we replace the max fuel with the amount set by the user
                         current.fuelMax = _FirstAidKitUses;
-                        flag = true;
                         break;
                     case 5:     // Shovel of Dirt
                     case 704:   // Shovel of Sand
                     case 705:   // Shovel of Mud
                     case 706:   // Shovel of Red Sand
-                        // This items do not count as tools, but we need to have the same durability of a shovel
+                        // This items do not count as tools, but we need them to have the same durability of a shovel
                         current.fuelMax = Convert.ToInt32(current.fuelMax * _ToolDurabilityMultiplier);
-                        flag = true;
                         break;
+                    default: 
+                        if ((!current.isATool) ||   //  If this isn't a tool ...
+                            (current.fuelMax == 0)) // ... or If it's an "empty" tool ...
+                            break;                  // ... do nothing and go to the next item
+
+                        // Power Tools
+                        if (current.isPowerTool)
+                            current.fuelMax = Convert.ToInt32(current.fuelMax * _PowerToolDurabilityMultiplier);
+                        // Weapons
+                        else if (current.staminaTypeUse == InventoryItem.staminaType.Hunting)
+                            current.fuelMax = Convert.ToInt32(current.fuelMax * _WeaponDurabilityMultiplier);
+                        // Simple tools, not power tools
+                        else 
+                            current.fuelMax = Convert.ToInt32(current.fuelMax * _ToolDurabilityMultiplier);
                 }
-
-                
-                if ((flag) ||               // If we handled the item in the switch-case...
-                    (!current.isATool) ||   // ... or If this isn't a tool ...
-                    (current.fuelMax == 0)) // ... or If it's an "empty" tool ....
-                    continue;               // ... let's just continue to the next item
-
-                // Power Tools
-                if (current.isPowerTool)
-                    current.fuelMax = Convert.ToInt32(current.fuelMax * _PowerToolDurabilityMultiplier);
-                // Weapons
-                else if (current.staminaTypeUse == InventoryItem.staminaType.Hunting)
-                    current.fuelMax = Convert.ToInt32(current.fuelMax * _WeaponDurabilityMultiplier);
-                // Simple tools, not power tools
-                else 
-                    current.fuelMax = Convert.ToInt32(current.fuelMax * _ToolDurabilityMultiplier);
             }
         }
     }
