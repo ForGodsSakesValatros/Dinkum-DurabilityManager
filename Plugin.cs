@@ -107,7 +107,7 @@ namespace mystikal.dinkum.DurabilityManager
                             current.fuelMax = Convert.ToInt32(current.fuelMax * _PowerToolDurabilityMultiplier);
                         // Weapons
                         else if (current.staminaTypeUse == InventoryItem.staminaType.Hunting)
-                            current.fuelMax = Convert.ToInt32(current.fuelMax * _WeaponDurabilityMultiplier);
+                            current.weaponDamage = Convert.ToInt32(current.weaponDamage * _WeaponDurabilityMultiplier);
                         // Simple tools, not power tools
                         else 
                             current.fuelMax = Convert.ToInt32(current.fuelMax * _ToolDurabilityMultiplier);
